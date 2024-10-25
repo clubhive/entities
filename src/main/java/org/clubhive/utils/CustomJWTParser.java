@@ -23,7 +23,7 @@ public class CustomJWTParser {
         }
     }
 
-    private boolean isTokenExpired(String token) {
+    private static boolean isTokenExpired(String token) {
         try {
 
             JWT jwt = JWTParser.parse(token);
