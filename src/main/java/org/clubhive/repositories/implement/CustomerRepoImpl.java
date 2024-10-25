@@ -7,6 +7,7 @@ import org.clubhive.entities.UserEntity;
 import org.clubhive.model.Customer;
 import org.clubhive.repositories.UserRepositoryImplementation;
 import org.clubhive.repositories.jpa.CustomerRepository;
+import org.clubhive.utils.CustomerMapper;
 import org.clubhive.utils.GenericMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
@@ -20,9 +21,9 @@ public class CustomerRepoImpl implements UserRepositoryImplementation<Customer> 
 
     @Override
     public Customer save(Customer customer) {
-        UserEntity userEntity = GenericMapper.map(customer, UserEntity.class);
+        UserEntity userEntity = CustomerMapper.mapToEntity(customer);
 
-        return GenericMapper.map(customerRepository.save(userEntity), Customer.class);
+        return CustomerMapper.mapToModel(customerRepository.save(userEntity));
 
     }
 
@@ -37,12 +38,12 @@ public class CustomerRepoImpl implements UserRepositoryImplementation<Customer> 
         userEntity.setName((customer.getName() != null) ? customer.getName(): userEntity.getName());
         userEntity.setPhone((customer.getPhone() != null) ? customer.getPhone() : userEntity.getPhone());
 
-        return save(GenericMapper.map(userEntity, Customer.class));
+        return save(CustomerMapper.mapToModel(userEntity));
     }
 
     @Override
     public List<Customer> findAll(){
-        return GenericMapper.mapList(customerRepository.findAll(), Customer.class);
+        return customerRepository.findAll().parallelStream().map(CustomerMapper::mapToModel).toList();
     }
 
 }
