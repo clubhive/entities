@@ -34,15 +34,14 @@
 
         <dependency>
             <groupId>com.github.StivenVA</groupId>
-            <artifactId>Exceptions</artifactId>
-            <version>main-SNAPSHOT</version>
-
+            <artifactId>exceptions</artifactId>
+            <version>main-f14424fd57-1</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.StivenVA</groupId>
             <artifactId>FindUser</artifactId>
-            <version>main-SNAPSHOT</version>
+            <version>main-5b0f0384d8-1</version>
         </dependency>
 
         <dependency>
