@@ -3,7 +3,6 @@ package org.clubhive.utils;
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
-import exceptions.InvalidTokenException;
 import exceptions.NoBugsException;
 import org.springframework.http.HttpStatus;
 
@@ -23,7 +22,7 @@ public class CustomJWTParser {
         }
     }
 
-    private static boolean isTokenExpired(String token) {
+    public static boolean isTokenExpired(String token) {
         try {
 
             JWT jwt = JWTParser.parse(token);
