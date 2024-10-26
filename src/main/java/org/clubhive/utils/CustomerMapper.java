@@ -24,6 +24,7 @@ public class CustomerMapper {
         userEntity.setEmail(customer.getEmail());
         userEntity.setName(customer.getName());
         userEntity.setPhone(customer.getPhone());
+        userEntity.setUserId(customer.getUserId());
 
         return userEntity;
     }
@@ -47,6 +48,7 @@ public class CustomerMapper {
         customer.setEmail(userEntity.getEmail());
         customer.setName(userEntity.getName());
         customer.setPhone(userEntity.getPhone());
+        customer.setUserId(userEntity.getUserId());
 
         return customer;
     }
