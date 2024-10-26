@@ -46,12 +46,12 @@ public class OrganizerRepoImpl implements UserRepositoryImplementation<Organizer
     @Override
     public Organizer update(Organizer organizer){
 
-        Organizer organizerEntity = findById(organizer.getId());
+        OrganizerEntity organizerEntity = organizerRepository.findByOrganizerId(organizer.getOrganizerId());
 
         organizerEntity.setUrlPay((organizer.getUrlPay() != null) ? organizer.getUrlPay() : organizerEntity.getUrlPay());
         organizerEntity.setName((organizer.getName() != null) ? organizer.getName() : organizerEntity.getName());
 
-        return save(organizerEntity);
+        return save(GenericMapper.map(organizerEntity,Organizer.class));
     }
 
     public Organizer findById(Long id){
