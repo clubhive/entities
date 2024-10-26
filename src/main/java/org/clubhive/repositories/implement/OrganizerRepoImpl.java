@@ -51,7 +51,7 @@ public class OrganizerRepoImpl implements UserRepositoryImplementation<Organizer
         organizerEntity.setUrlPay((organizer.getUrlPay() != null) ? organizer.getUrlPay() : organizerEntity.getUrlPay());
         organizerEntity.setName((organizer.getName() != null) ? organizer.getName() : organizerEntity.getName());
 
-        return save(GenericMapper.map(organizerEntity,Organizer.class));
+        return GenericMapper.map(organizerRepository.save(organizerEntity),Organizer.class);
     }
 
     public Organizer findById(Long id){
