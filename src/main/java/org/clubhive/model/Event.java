@@ -35,4 +35,6 @@ public class Event {
     private List<Promoter> promoters;
 
     private List<Ticket> tickets;
+
+    private Double lowerPrice;
 }

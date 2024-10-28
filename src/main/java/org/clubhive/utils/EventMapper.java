@@ -18,7 +18,7 @@ public class EventMapper {
 
     public static Event mapEventEntityToEventModel(EventEntity eventEntity) {
 
-        Event event = new GenericMapper().map(eventEntity, Event.class);
+        Event event = GenericMapper.map(eventEntity, Event.class);
         event.setOrgnzId(eventEntity.getOrgnzId().getOrganizerId());
         event.setCityId(eventEntity.getCity().getId());
         event.setLocation(event.getLocation());
@@ -27,7 +27,7 @@ public class EventMapper {
     }
 
     public static EventDTO mapEventModelToEventDTO(Event event) {
-        return new GenericMapper().map(event, EventDTO.class);
+        return GenericMapper.map(event, EventDTO.class);
     }
 
     public static List<Event> mapEventEntityListToEventList(List<EventEntity> eventEntityList) {
@@ -42,13 +42,13 @@ public class EventMapper {
     }
 
     public static Event mapEventDTOToEvent(EventDTO eventDTO) {
-        Event event = new GenericMapper().map(eventDTO, Event.class);
+        Event event = GenericMapper.map(eventDTO, Event.class);
         List<Promoter> promoters = null;
         List<Ticket> tickets = null;
         if (eventDTO.getPromoters() != null)
-            promoters = new GenericMapper().mapList(eventDTO.getPromoters(), Promoter.class);
+            promoters = GenericMapper.mapList(eventDTO.getPromoters(), Promoter.class);
         if (eventDTO.getTickets() != null)
-            tickets = new GenericMapper().mapList(eventDTO.getTickets(), Ticket.class);
+            tickets = GenericMapper.mapList(eventDTO.getTickets(), Ticket.class);
         event.setPromoters(promoters);
         event.setTickets(tickets);
         event.setCityId(eventDTO.getCityId());
@@ -56,9 +56,9 @@ public class EventMapper {
     }
 
     public static EventDTO mapEventToEventDTO(Event event) {
-        EventDTO eventDTO = new GenericMapper().map(event, EventDTO.class);
-        List<PromoterDTO> promoters = new GenericMapper().mapList(event.getPromoters(), PromoterDTO.class);
-        List<TicketDTO> tickets = new GenericMapper().mapList(event.getTickets(), TicketDTO.class);
+        EventDTO eventDTO = GenericMapper.map(event, EventDTO.class);
+        List<PromoterDTO> promoters = GenericMapper.mapList(event.getPromoters(), PromoterDTO.class);
+        List<TicketDTO> tickets = GenericMapper.mapList(event.getTickets(), TicketDTO.class);
         eventDTO.setPromoters(promoters);
         eventDTO.setTickets(tickets);
         return eventDTO;
@@ -76,6 +76,7 @@ public class EventMapper {
         eventEntity.setState(event.getState());
         eventEntity.setCity(new CityEntity(event.getId(), ""));
         eventEntity.setLocation(event.getLocation());
+        eventEntity.setLowerPrice(event.getLowerPrice());
 
         return eventEntity;
     }

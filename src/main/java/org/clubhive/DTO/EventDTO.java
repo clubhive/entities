@@ -25,4 +25,5 @@ public class EventDTO {
     private String id;
     private List<TicketDTO> tickets;
     private List<PromoterDTO> promoters;
+    private Double lowerPrice;
 }

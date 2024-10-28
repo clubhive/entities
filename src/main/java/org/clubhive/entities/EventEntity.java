@@ -51,4 +51,6 @@ public class EventEntity {
     @Column(name = "state_event")
     private boolean state;
 
+    @Column(name = "lower_price")
+    private double lowerPrice;
 }
