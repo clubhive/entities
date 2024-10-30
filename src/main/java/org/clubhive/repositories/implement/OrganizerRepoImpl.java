@@ -26,12 +26,7 @@ public class OrganizerRepoImpl implements UserRepositoryImplementation<Organizer
     @Override
     public Organizer save(Organizer organizer){
 
-        OrganizerEntity organizerEntity = new OrganizerEntity();
-        organizerEntity.setId(organizer.getId());
-        organizerEntity.setOrganizerId(organizer.getOrganizerId());
-        organizerEntity.setUrlPay(organizer.getUrlPay());
-        organizerEntity.setName(organizer.getName());
-        organizerEntity.setEmail(organizer.getEmail());
+        OrganizerEntity organizerEntity = GenericMapper.map(organizer,OrganizerEntity.class);
 
         return GenericMapper.map(organizerRepository.save(organizerEntity),Organizer.class);
     }

@@ -2,7 +2,9 @@ package org.clubhive;
 
 import lombok.RequiredArgsConstructor;
 
+import org.clubhive.model.Organizer;
 import org.clubhive.repositories.implement.DetailRepository;
+import org.clubhive.repositories.implement.OrganizerRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +17,7 @@ import javax.naming.Context;
 public class Main {
 
     @Autowired
-    private DetailRepository detailRepository;
+    private OrganizerRepoImpl organizerRepo;
 
     public static void main(String[] args) {
 
@@ -26,6 +28,12 @@ public class Main {
     }
 
     public void test(){
-        System.out.println(detailRepository.findByQr("CHQR-ce315644-e4c5-4bc8-972b-e686b4e6ce6a"));
+        Organizer organizer = new Organizer();
+        organizer.setId(28);
+        organizer.setName("Test");
+        organizer.setUrlPay("Test");
+        organizer.setOrganizerId("Test");
+        organizer.setPicture("Test");
+        organizerRepo.save(organizer);
     }
 }
