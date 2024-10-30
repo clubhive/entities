@@ -27,6 +27,7 @@ public class OrganizerRepoImpl implements UserRepositoryImplementation<Organizer
     public Organizer save(Organizer organizer){
 
         OrganizerEntity organizerEntity = new OrganizerEntity();
+        organizerEntity.setId(organizer.getId());
         organizerEntity.setOrganizerId(organizer.getOrganizerId());
         organizerEntity.setUrlPay(organizer.getUrlPay());
         organizerEntity.setName(organizer.getName());
