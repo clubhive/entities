@@ -7,6 +7,7 @@ import org.clubhive.entities.EventEntity;
 import org.clubhive.entities.OrganizerEntity;
 import org.clubhive.model.Event;
 import org.clubhive.model.Organizer;
+import org.clubhive.model.OrganizerEvent;
 import org.clubhive.repositories.jpa.CityRepositoryJpa;
 import org.clubhive.repositories.jpa.EventRepositoryJpa;
 import org.clubhive.repositories.jpa.OrganizerRepository;
@@ -26,23 +27,18 @@ public class EventRepository {
     private final CityRepositoryJpa cityRepositoryJpa;
 
     public Event save(Event event) {
-        Organizer organizer = organizerRepository.findByOrganizerId(event.getOrgnzId());
+        Organizer organizer = organizerRepository.findByOrganizerId(event.getOrganizerEvent().getOrganizerId());
         EventEntity eventEntity = EventMapper.mapEventToEventEntity(event);
         eventEntity.setOrgnzId(GenericMapper.map(organizer, OrganizerEntity.class));
         eventEntity.setCity(cityRepositoryJpa.findById(event.getCityId()).orElseThrow());
         return EventMapper.mapEventEntityToEventModel(eventRepositoryJpa.save(eventEntity));
     }
 
-    public List<Event> findAllByOrgnz(String id){
+    public List<Event> findAllByOrgnz(String organizerId){
 
-        FindUser<Organizer,String> findOrganizer = (organizer) -> organizerRepository.findAll().stream().filter(org -> org.getOrganizerId().equals(organizer)).findFirst().orElseThrow(()->new NoBugsException("Organizer not found", HttpStatus.NOT_FOUND));
+        Organizer organizer = organizerRepository.findByOrganizerId(organizerId);
 
-        Organizer organizer = findOrganizer.findBy(id);
-
-        if (organizer == null)
-            throw new NoBugsException("Organizer not found", HttpStatus.NOT_FOUND);
-
-        return EventMapper.mapEventEntityListToEventList(eventRepositoryJpa.findAllByOrgnzId(id));
+        return EventMapper.mapEventEntityListToEventList(eventRepositoryJpa.findAllByOrgnzId(GenericMapper.map(organizer, OrganizerEntity.class)));
     }
 
     public Event findById(Long id) {
@@ -61,7 +57,10 @@ public class EventRepository {
             throw new NoBugsException(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 
-        return EventMapper.mapEventEntityToEventModel(eventFounded);
+        Event event = EventMapper.mapEventEntityToEventModel(eventFounded);
+        event.setOrganizerEvent(GenericMapper.map(eventFounded.getOrgnzId(), OrganizerEvent.class));
+
+        return event;
     }
 
     public Event findByIdAndSubject(Long id,String subject){
@@ -80,7 +79,10 @@ public class EventRepository {
             throw new NoBugsException(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 
-        return EventMapper.mapEventEntityToEventModel(eventFounded);
+        Event event = EventMapper.mapEventEntityToEventModel(eventFounded);
+        event.setOrganizerEvent(GenericMapper.map(eventFounded.getOrgnzId(), OrganizerEvent.class));
+
+        return event;
     }
 
     public List<Event> filterEvents(String search){

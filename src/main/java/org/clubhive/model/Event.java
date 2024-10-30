@@ -26,11 +26,9 @@ public class Event {
 
     private String img;
 
-    private String orgnzId;
-
     private Boolean state;
 
-    private String orgnzName;
+    private OrganizerEvent organizerEvent;
 
     private List<Promoter> promoters;
 

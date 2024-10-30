@@ -21,7 +21,7 @@ public class EventDTO {
     private String location;
     private String img;
     private long cityId;
-    private String orgnzName;
+    private OrganizerEventDTO organizerEvent;
     private String id;
     private List<TicketDTO> tickets;
     private List<PromoterDTO> promoters;

@@ -2,11 +2,13 @@ package org.clubhive.utils;
 
 
 import org.clubhive.DTO.EventDTO;
+import org.clubhive.DTO.OrganizerEventDTO;
 import org.clubhive.DTO.PromoterDTO;
 import org.clubhive.DTO.TicketDTO;
 import org.clubhive.entities.CityEntity;
 import org.clubhive.entities.EventEntity;
 import org.clubhive.model.Event;
+import org.clubhive.model.OrganizerEvent;
 import org.clubhive.model.Promoter;
 import org.clubhive.model.Ticket;
 
@@ -19,9 +21,9 @@ public class EventMapper {
     public static Event mapEventEntityToEventModel(EventEntity eventEntity) {
 
         Event event = GenericMapper.map(eventEntity, Event.class);
-        event.setOrgnzId(eventEntity.getOrgnzId().getOrganizerId());
         event.setCityId(eventEntity.getCity().getId());
         event.setLocation(event.getLocation());
+        event.setOrganizerEvent(GenericMapper.map(eventEntity.getOrgnzId(), OrganizerEvent.class));
 
         return event;
     }
@@ -61,6 +63,7 @@ public class EventMapper {
         List<TicketDTO> tickets = GenericMapper.mapList(event.getTickets(), TicketDTO.class);
         eventDTO.setPromoters(promoters);
         eventDTO.setTickets(tickets);
+        eventDTO.setOrganizerEvent(GenericMapper.map(event.getOrganizerEvent(), OrganizerEventDTO.class));
         return eventDTO;
     }
 

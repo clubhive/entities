@@ -19,6 +19,5 @@ public interface EventRepositoryJpa extends CrudRepository<EventEntity, Long>{
     @Query(value="select e  from EventEntity e where e.id = ?1 and e.orgnzId.organizerId = ?2")
     EventEntity findByIdAndAndOrgnzId(Long id, String subject);
 
-    @Query("select e from EventEntity e where e.orgnzId.organizerId = ?1")
-    List<EventEntity> findAllByOrgnzId(String id);
+    List<EventEntity> findAllByOrgnzId(OrganizerEntity organizer);
 }
