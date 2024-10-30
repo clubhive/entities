@@ -25,9 +25,6 @@ public class OrganizerRepoImpl implements UserRepositoryImplementation<Organizer
 
     @Override
     public Organizer save(Organizer organizer){
-        if (organizerRepository.existsByOrganizerId(organizer.getOrganizerId())) {
-            throw new IllegalArgumentException("Organizer already exist");
-        }
 
         OrganizerEntity organizerEntity = new OrganizerEntity();
         organizerEntity.setOrganizerId(organizer.getOrganizerId());
