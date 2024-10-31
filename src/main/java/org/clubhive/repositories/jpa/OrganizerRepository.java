@@ -11,4 +11,5 @@ public interface OrganizerRepository extends JpaRepository<OrganizerEntity, Long
     OrganizerEntity findByOrganizerId(String organizerId);
     OrganizerEntity findById(long id);
     boolean existsByOrganizerId(String organizerId);
+    OrganizerEntity findByEmail(String email);
 }

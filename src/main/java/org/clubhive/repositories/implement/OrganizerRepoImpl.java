@@ -37,6 +37,11 @@ public class OrganizerRepoImpl implements UserRepositoryImplementation<Organizer
     }
 
     @Override
+    public Organizer findByEmail(String email) {
+        return GenericMapper.map(organizerRepository.findByEmail(email),Organizer.class);
+    }
+
+    @Override
     public Organizer update(Organizer organizer){
 
         OrganizerEntity organizerEntity = organizerRepository.findByOrganizerId(organizer.getOrganizerId());

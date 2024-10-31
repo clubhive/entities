@@ -46,4 +46,9 @@ public class CustomerRepoImpl implements UserRepositoryImplementation<Customer> 
         return customerRepository.findAll().parallelStream().map(CustomerMapper::mapToModel).toList();
     }
 
+    @Override
+    public Customer findByEmail(String email) {
+        return CustomerMapper.mapToModel(customerRepository.findByEmail(email));
+    }
+
 }

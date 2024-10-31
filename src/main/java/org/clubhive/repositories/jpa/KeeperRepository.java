@@ -15,4 +15,6 @@ public interface KeeperRepository extends JpaRepository<KeeperEntity,Long> {
     List<KeeperEntity> findAllByOrganizer(OrganizerEntity organizerEntity);
 
     KeeperEntity findByKeeperId(String keeperId);
+
+    KeeperEntity findByEmail(String email);
 }

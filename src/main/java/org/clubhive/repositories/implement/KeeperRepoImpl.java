@@ -55,6 +55,11 @@ public class KeeperRepoImpl implements UserRepositoryImplementation<Keeper> {
 
     }
 
+    @Override
+    public Keeper findByEmail(String email) {
+        return GenericMapper.map(keeperRepository.findByEmail(email), Keeper.class);
+    }
+
     public List<Keeper> findAllByOrganizer(Organizer organizer) {
         return GenericMapper.mapList(keeperRepository.findAllByOrganizer(GenericMapper.map(organizer, OrganizerEntity.class)), Keeper.class);
     }

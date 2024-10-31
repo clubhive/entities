@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import javax.naming.Context;
+import java.util.List;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -30,8 +31,9 @@ public class Main {
     }
 
     public void test(){
-        Event event = eventRepository.findAllByOrgnz("f498a488-7051-7071-aea1-70dee1ea0343").get(0);
 
-        System.out.println(event);
+        List<Event> events = eventRepository.filterEvents("Villavicencio");
+
+        System.out.println(events);
     }
 }
