@@ -1,7 +1,5 @@
 package org.clubhive.repositories.implement;
 
-import FindUser.FindUser;
-import exceptions.NoBugsException;
 import lombok.RequiredArgsConstructor;
 import org.clubhive.entities.UserEntity;
 import org.clubhive.model.Customer;
@@ -30,15 +28,12 @@ public class CustomerRepoImpl implements UserRepositoryImplementation<Customer> 
     @Override
     public Customer update(Customer customer){
 
-        FindUser<UserEntity,String> findByUserId = (userId)-> customerRepository.findAll().stream().filter(userEntity -> userEntity.getUserId().equals(userId)).findFirst().orElseThrow(()->new NoBugsException("User not found", HttpStatus.NOT_FOUND));
+        Customer customerToUpdate = findByUserId(customer.getUserId());
 
-        UserEntity userEntity = findByUserId.findBy(customer.getUserId());
+        customerToUpdate.setName((customer.getName() != null) ? customer.getName(): customerToUpdate.getName());
+        customerToUpdate.setPhone((customer.getPhone() != null) ? customer.getPhone() : customerToUpdate.getPhone());
 
-
-        userEntity.setName((customer.getName() != null) ? customer.getName(): userEntity.getName());
-        userEntity.setPhone((customer.getPhone() != null) ? customer.getPhone() : userEntity.getPhone());
-
-        return save(CustomerMapper.mapToModel(userEntity));
+        return save(customerToUpdate);
     }
 
     @Override
@@ -49,6 +44,11 @@ public class CustomerRepoImpl implements UserRepositoryImplementation<Customer> 
     @Override
     public Customer findByEmail(String email) {
         return CustomerMapper.mapToModel(customerRepository.findByEmail(email));
+    }
+
+    @Override
+    public Customer findByUserId(String userId) {
+        return CustomerMapper.mapToModel(customerRepository.findByUserId(userId));
     }
 
 }
