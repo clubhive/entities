@@ -44,6 +44,7 @@ public class CustomerMapper {
     public static Customer mapToModel(UserEntity userEntity){
         Customer customer = new Customer();
 
+        customer.setId(userEntity.getId());
         customer.setDni(userEntity.getDni());
         customer.setEmail(userEntity.getEmail());
         customer.setName(userEntity.getName());
