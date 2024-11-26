@@ -72,10 +72,10 @@ public class EventMapper {
 
         eventEntity.setId(event.getId());
         eventEntity.setName(event.getName());
-        eventEntity.setDate(LocalDate.parse(event.getDate()));
+        eventEntity.setDate(event.getDate());
         eventEntity.setImg(event.getImg());
         eventEntity.setDesc(event.getDesc());
-        eventEntity.setTime(LocalTime.parse(event.getTime()));
+        eventEntity.setTime(event.getTime());
         eventEntity.setState(event.getState());
         eventEntity.setCity(new CityEntity(event.getId(), ""));
         eventEntity.setLocation(event.getLocation());
