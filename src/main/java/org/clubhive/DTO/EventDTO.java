@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -15,8 +17,8 @@ import java.util.List;
 public class EventDTO {
     private String name;
     private String desc;
-    private String time;
-    private String date;
+    private LocalTime time;
+    private LocalDate date;
     private Boolean state;
     private String location;
     private String img;
