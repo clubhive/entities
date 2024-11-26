@@ -103,4 +103,8 @@ public class EventRepository {
         return EventMapper.mapEventEntityListToEventList(events);
     }
 
+    public List<Event> findAllEvents(){
+        return EventMapper.mapEventEntityListToEventList(eventRepositoryJpa.findAll());
+    }
+
 }
