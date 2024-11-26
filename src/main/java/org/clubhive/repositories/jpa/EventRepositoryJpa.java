@@ -21,4 +21,6 @@ public interface EventRepositoryJpa extends JpaRepository<EventEntity, Long> {
     EventEntity findByIdAndAndOrgnzId(Long id, String subject);
 
     List<EventEntity> findAllByOrgnzId(OrganizerEntity organizer);
+
+    List<EventEntity> findByStateIsTrue();
 }
