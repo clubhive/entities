@@ -10,4 +10,5 @@ public interface UserRepositoryImplementation<T extends User> {
     T save(T model);
     List<T> findAll();
     T findByEmail(String email);
+    T findByUserId(String userId);
 }

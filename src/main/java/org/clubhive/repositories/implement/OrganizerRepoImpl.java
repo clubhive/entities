@@ -3,7 +3,6 @@ package org.clubhive.repositories.implement;
 
 
 import exceptions.NoBugsException;
-import lombok.RequiredArgsConstructor;
 import org.clubhive.entities.OrganizerEntity;
 import org.clubhive.model.Organizer;
 import org.clubhive.repositories.UserRepositoryImplementation;
@@ -42,14 +41,19 @@ public class OrganizerRepoImpl implements UserRepositoryImplementation<Organizer
     }
 
     @Override
+    public Organizer findByUserId(String userId) {
+        return GenericMapper.map(organizerRepository.findByOrganizerId(userId),Organizer.class);
+    }
+
+    @Override
     public Organizer update(Organizer organizer){
 
-        OrganizerEntity organizerEntity = organizerRepository.findByOrganizerId(organizer.getOrganizerId());
+        Organizer organizerToUpdate = findByOrganizerId(organizer.getOrganizerId());
 
-        organizerEntity.setUrlPay((organizer.getUrlPay() != null) ? organizer.getUrlPay() : organizerEntity.getUrlPay());
-        organizerEntity.setName((organizer.getName() != null) ? organizer.getName() : organizerEntity.getName());
+        organizerToUpdate.setUrlPay((organizer.getUrlPay() != null) ? organizer.getUrlPay() : organizerToUpdate.getUrlPay());
+        organizerToUpdate.setName((organizer.getName() != null) ? organizer.getName() : organizerToUpdate.getName());
 
-        return GenericMapper.map(organizerRepository.save(organizerEntity),Organizer.class);
+        return save(organizerToUpdate);
     }
 
     public Organizer findById(Long id){

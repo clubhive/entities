@@ -26,7 +26,7 @@ public class KeeperRepoImpl implements UserRepositoryImplementation<Keeper> {
     public Keeper update(Keeper model) {
         Keeper keeperToUpdate = null;
         try {
-            keeperToUpdate = GenericMapper.map(keeperRepository.findByKeeperId(model.getKeeperId()), Keeper.class);
+            keeperToUpdate = findByUserId(model.getKeeperId());
 
             if (keeperToUpdate == null)
                 throw new NullPointerException();
@@ -58,6 +58,11 @@ public class KeeperRepoImpl implements UserRepositoryImplementation<Keeper> {
     @Override
     public Keeper findByEmail(String email) {
         return GenericMapper.map(keeperRepository.findByEmail(email), Keeper.class);
+    }
+
+    @Override
+    public Keeper findByUserId(String userId) {
+        return GenericMapper.map(keeperRepository.findByKeeperId(userId), Keeper.class);
     }
 
     public List<Keeper> findAllByOrganizer(Organizer organizer) {
