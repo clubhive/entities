@@ -73,7 +73,7 @@ public class DetailRepository {
 
         results.forEach(result -> promotersDashBoard.computeIfAbsent((String) result[0], k -> ((Number) result[1]).intValue()));
 
-        List<Promoter> promotersEvent = promoterRepository.findByEvents(EventMapper.mapEventToEventEntity(eventRepository.findById(idEvent)));
+        List<Promoter> promotersEvent = promoterRepository.findByEvents(eventRepository.findById(idEvent));
 
         promotersEvent.forEach(promoter -> promotersDashBoard.computeIfAbsent(promoter.getCode(), k -> 0));
 

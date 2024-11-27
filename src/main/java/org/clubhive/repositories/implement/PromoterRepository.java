@@ -4,6 +4,7 @@ import exceptions.NoBugsException;
 import lombok.RequiredArgsConstructor;
 import org.clubhive.entities.EventEntity;
 import org.clubhive.entities.PromoterEntity;
+import org.clubhive.model.Event;
 import org.clubhive.model.Promoter;
 import org.clubhive.repositories.jpa.EventRepositoryJpa;
 import org.clubhive.repositories.jpa.PromoterRepositoryJpa;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -116,8 +118,11 @@ public class PromoterRepository {
         promoterRepositoryJpa.deleteById(id);
     }
 
-    public List<Promoter> findByEvents(EventEntity event) {
-        return PromoterMapper.entityListToModelList(promoterRepositoryJpa.findByEvent(event));
+    public List<Promoter> findByEvents(Event event) {
+
+        EventEntity eventEntity = eventRepositoryJpa.findById(event.getId()).orElseThrow();
+
+        return PromoterMapper.entityListToModelList(promoterRepositoryJpa.findByEvent(eventEntity));
     }
 
 
