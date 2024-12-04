@@ -79,4 +79,18 @@ public class DetailRepository {
 
         return promotersDashBoard;
     }
+
+    public Map<String,Integer> getTicketsSoldWithPromoterCodeByEventId(Long idEvent){
+        List<Object[]> results = detailRepository.getTicketsSoldWithPromoterCodeByEventId(idEvent);
+        Map<String, Integer> ticketsSold = new HashMap<>();
+        results.forEach(result -> ticketsSold.put((String) result[0], ((Number) result[1]).intValue()));
+        return ticketsSold;
+    }
+
+    public Map<String,Integer> getTicketsSoldWithoutPromoterCodeByEventId(Long idEvent){
+        List<Object[]> results = detailRepository.getTicketsSoldWithoutPromoterCodeByEventId(idEvent);
+        Map<String, Integer> ticketsSold = new HashMap<>();
+        results.forEach(result -> ticketsSold.put((String) result[0], ((Number) result[1]).intValue()));
+        return ticketsSold;
+    }
 }
