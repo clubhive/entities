@@ -13,9 +13,9 @@ public interface DetailRepositoryJpa extends JpaRepository<DetailEntity,Long> {
     @Query(value="select d.* from details d, buy_ticket b where d.id_buy = b.id_buy and b.qr_buy = ?1", nativeQuery = true)
     List<DetailEntity> findByQR(String qr);
 
-    @Query(value="select t.name_ticket,sum(d.quantity) from buy_ticket b, tickets t, details d where d.id_buy = b.id_buy and t.id_ticket = d.id_ticket and b.id_promoter is not NULL and t.id_event = ?1 GROUP BY t.name_ticket", nativeQuery = true)
+    @Query(value="select t.name_ticket,sum(d.quantity) from buy_ticket b, tickets t, details d where d.id_buy = b.id_buy and t.id_ticket = d.id_ticket and b.id_promoter is not NULL and b.state_buy = 'APPROVED' and t.id_event = ?1 GROUP BY t.name_ticket", nativeQuery = true)
     List<Object[]> getTicketsSoldWithPromoterCodeByEventId(Long idEvent);
 
-    @Query(value="select t.name_ticket,sum(d.quantity) from buy_ticket b, tickets t, details d where d.id_buy = b.id_buy and t.id_ticket = d.id_ticket and b.id_promoter is NULL and t.id_event = ?1 GROUP BY t.name_ticket", nativeQuery = true)
+    @Query(value="select t.name_ticket,sum(d.quantity) from buy_ticket b, tickets t, details d where d.id_buy = b.id_buy and t.id_ticket = d.id_ticket and b.id_promoter is NULL and b.state_buy = 'APPROVED' and t.id_event = ?1 GROUP BY t.name_ticket", nativeQuery = true)
     List<Object[]> getTicketsSoldWithoutPromoterCodeByEventId(Long idEvent);
 }
