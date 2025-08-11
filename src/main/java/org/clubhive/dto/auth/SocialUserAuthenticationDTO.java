@@ -1,4 +1,4 @@
-package org.clubhive.DTO.auth;
+package org.clubhive.dto.auth;
 
 import lombok.Getter;
 import lombok.Setter;

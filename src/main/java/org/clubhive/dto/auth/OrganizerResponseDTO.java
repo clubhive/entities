@@ -1,10 +1,12 @@
-package org.clubhive.DTO.auth;
+package org.clubhive.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.clubhive.DTO.UserResponseDTO;
+import org.clubhive.dto.UserResponseDTO;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -1,9 +1,9 @@
 package org.clubhive.utils;
 
-import exceptions.NoBugsException;
-import lombok.RequiredArgsConstructor;
-import org.clubhive.DTO.*;
-import org.clubhive.DTO.auth.CustomerResponseDTO;
+import com.co.nobugs.nobugsexception.NoBugsException;
+
+import org.clubhive.dto.*;
+import org.clubhive.dto.auth.CustomerResponseDTO;
 import org.clubhive.entities.BuyEntity;
 import org.clubhive.entities.BuyTicketStatus;
 import org.clubhive.entities.PromoterEntity;
@@ -11,11 +11,8 @@ import org.clubhive.entities.UserEntity;
 import org.clubhive.model.Buy;
 import org.clubhive.model.Customer;
 import org.clubhive.model.Detail;
-import org.clubhive.model.Promoter;
-import org.clubhive.repositories.implement.DetailRepository;
 import org.springframework.http.HttpStatus;
 
-import java.util.ArrayList;
 public class BuyMapper {
 
     public static BuyDTO mapToBuyDTO(Buy buy){
@@ -102,7 +99,7 @@ public class BuyMapper {
         return buyEntity;
     }
 
-    public static BuyCustomerDTO mapToBuyCustomer(Buy buy){
+    public static BuyCustomerDTO mapToBuyCustomer(Buy buy) throws NoBugsException {
         if (buy == null) return null;
 
         if (buy.getDetails() == null || buy.getDetails().isEmpty())

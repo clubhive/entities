@@ -1,7 +1,7 @@
 package org.clubhive.utils;
 
 
-import org.clubhive.DTO.TicketDTO;
+import org.clubhive.dto.TicketDTO;
 import org.clubhive.entities.TicketEntity;
 import org.clubhive.model.Ticket;
 

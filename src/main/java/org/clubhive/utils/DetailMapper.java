@@ -1,7 +1,7 @@
 package org.clubhive.utils;
 
 import lombok.RequiredArgsConstructor;
-import org.clubhive.DTO.DetailDTO;
+import org.clubhive.dto.DetailDTO;
 import org.clubhive.entities.DetailEntity;
 import org.clubhive.model.Detail;
 import org.clubhive.repositories.jpa.DetailRepositoryJpa;

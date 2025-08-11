@@ -1,6 +1,6 @@
 package org.clubhive.utils;
 
-import org.clubhive.DTO.CustomerDTO;
+import org.clubhive.dto.CustomerDTO;
 import org.clubhive.entities.UserEntity;
 import org.clubhive.model.Customer;
 

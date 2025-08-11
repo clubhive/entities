@@ -1,8 +1,8 @@
 package org.clubhive.repositories.implement;
 
 
-import exceptions.NoBugsException;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.clubhive.entities.TicketEntity;
 import org.clubhive.model.Event;
 import org.clubhive.model.Ticket;
@@ -12,7 +12,10 @@ import org.clubhive.utils.TicketMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.co.nobugs.nobugsexception.NoBugsException;
+
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 
 @Repository
 @RequiredArgsConstructor
@@ -21,7 +24,8 @@ public class TicketRepository {
     private final TicketRepositoryJpa ticketRepositoryJpa;
     private final EventRepository eventRepository;
 
-    public Ticket save(Ticket ticket){
+    @SneakyThrows
+    public Ticket save(Ticket ticket) {
 
         Event event = eventRepository.findById(Long.valueOf(ticket.getIdEvent()));
         if (event == null) {
@@ -34,36 +38,35 @@ public class TicketRepository {
         return TicketMapper.entityToModel(ticketRepositoryJpa.save(ticketEntity));
     }
 
-    public Ticket findById(Long id) {
+    public Ticket findById(Long id) throws NoBugsException {
         if (id == null)
             throw new IllegalArgumentException("Id must not be null");
 
         TicketEntity ticketFounded;
 
         try {
-             ticketFounded = ticketRepositoryJpa.findById(id).orElse(null);
+            ticketFounded = ticketRepositoryJpa.findById(id).orElse(null);
             if (ticketFounded == null) {
                 throw new NoBugsException("Ticket not found", HttpStatus.NOT_FOUND);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new NoBugsException(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 
         return TicketMapper.entityToModel(ticketFounded);
     }
 
-    public List<Ticket> saveAll(List<Ticket> tickets){
+    public List<Ticket> saveAll(List<Ticket> tickets) {
         return tickets.stream().map(this::save).toList();
     }
 
-    public Ticket deleteTicket(Long id){
+    public Ticket deleteTicket(Long id) throws NoBugsException {
         Ticket ticket = findById(id);
         ticketRepositoryJpa.delete(TicketMapper.modelToEntity(ticket));
         return ticket;
     }
 
-    public List<Ticket> findAllByIdEvent(String idEvent){
+    public List<Ticket> findAllByIdEvent(String idEvent) throws NoBugsException {
         if (idEvent == null)
             throw new IllegalArgumentException("IdEvent must not be null");
 
@@ -74,7 +77,7 @@ public class TicketRepository {
             if (tickets.isEmpty()) {
                 throw new NoBugsException("Tickets not found", HttpStatus.NOT_FOUND);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new NoBugsException(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 

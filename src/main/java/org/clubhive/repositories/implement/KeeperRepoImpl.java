@@ -1,7 +1,7 @@
 package org.clubhive.repositories.implement;
 
-import exceptions.NoBugsException;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.clubhive.entities.KeeperEntity;
 import org.clubhive.entities.OrganizerEntity;
 import org.clubhive.model.Keeper;
@@ -9,11 +9,12 @@ import org.clubhive.model.Organizer;
 import org.clubhive.repositories.UserRepositoryImplementation;
 import org.clubhive.repositories.jpa.KeeperRepository;
 import org.clubhive.utils.GenericMapper;
-import org.hibernate.tool.schema.spi.ExceptionHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.co.nobugs.nobugsexception.NoBugsException;
+
+import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class KeeperRepoImpl implements UserRepositoryImplementation<Keeper> {
     private final OrganizerRepoImpl organizerRepository;
 
     @Override
-    public Keeper update(Keeper model) {
+    public Keeper update(Keeper model) throws NoBugsException {
         Keeper keeperToUpdate = null;
         try {
             keeperToUpdate = findByUserId(model.getKeeperId());
@@ -42,7 +43,7 @@ public class KeeperRepoImpl implements UserRepositoryImplementation<Keeper> {
     }
 
     @Override
-    public Keeper save(Keeper model) {
+    public Keeper save(Keeper model) throws NoBugsException {
         KeeperEntity keeperToSave = GenericMapper.map(model, KeeperEntity.class);
         keeperToSave.setOrganizer(GenericMapper.map(organizerRepository.findById(model.getOrganizerId()), OrganizerEntity.class));
 
@@ -69,7 +70,7 @@ public class KeeperRepoImpl implements UserRepositoryImplementation<Keeper> {
         return GenericMapper.mapList(keeperRepository.findAllByOrganizer(GenericMapper.map(organizer, OrganizerEntity.class)), Keeper.class);
     }
 
-    public Keeper findById(Long id){
+    public Keeper findById(Long id) throws NoBugsException {
         return GenericMapper.map(keeperRepository.findById(id).orElseThrow(()->new NoBugsException("Keeper not found", HttpStatus.NOT_FOUND)),Keeper.class);
     }
 }

@@ -1,7 +1,7 @@
 package org.clubhive.utils;
 
 
-import org.clubhive.DTO.PromoterDTO;
+import org.clubhive.dto.PromoterDTO;
 import org.clubhive.entities.PromoterEntity;
 import org.clubhive.model.Promoter;
 

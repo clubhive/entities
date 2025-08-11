@@ -1,4 +1,4 @@
-package org.clubhive.DTO;
+package org.clubhive.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,11 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class DetailDTO {
+@NoArgsConstructor
+public class ReferenceDTO {
 
-    private TicketDTO ticket;
-    private int quantity;
-
+    private String reference;
+    private String state;
 }

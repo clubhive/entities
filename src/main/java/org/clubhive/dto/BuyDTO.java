@@ -1,10 +1,10 @@
-package org.clubhive.DTO;
+package org.clubhive.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.clubhive.DTO.auth.CustomerResponseDTO;
+import org.clubhive.dto.auth.CustomerResponseDTO;
 
 import java.sql.Timestamp;
 import java.util.List;

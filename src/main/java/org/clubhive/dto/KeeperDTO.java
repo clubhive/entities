@@ -1,19 +1,17 @@
-package org.clubhive.DTO.auth;
+package org.clubhive.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.clubhive.DTO.UserResponseDTO;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerResponseDTO extends UserResponseDTO {
-
+public class KeeperDTO extends UserAuthentication{
     private long id;
-    private String userId;
-    private String dni;
     private String phone;
+    private String name;
+    private long organizerId;
 }

@@ -1,4 +1,4 @@
-package org.clubhive.DTO;
+package org.clubhive.dto;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

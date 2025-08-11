@@ -3,7 +3,7 @@ package org.clubhive.utils;
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
-import exceptions.NoBugsException;
+import com.co.nobugs.nobugsexception.NoBugsException;
 import org.springframework.http.HttpStatus;
 
 import java.text.ParseException;
@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class CustomJWTParser {
 
-    public static String parseSubjectJWT(String token) {
+    public static String parseSubjectJWT(String token) throws NoBugsException {
 
         try {
             JWT jwt = JWTParser.parse(token);
@@ -22,7 +22,7 @@ public class CustomJWTParser {
         }
     }
 
-    public static boolean isTokenExpired(String token) {
+    public static boolean isTokenExpired(String token) throws NoBugsException {
         try {
 
             JWT jwt = JWTParser.parse(token);

@@ -14,7 +14,8 @@ import org.clubhive.utils.GenericMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
-import exceptions.NoBugsException;
+import com.co.nobugs.nobugsexception.NoBugsException;
+
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -25,7 +26,7 @@ public class EventRepository {
     private final OrganizerRepoImpl organizerRepository;
     private final CityRepositoryJpa cityRepositoryJpa;
 
-    public Event save(Event event) {
+    public Event save(Event event) throws NoBugsException {
         Organizer organizer = organizerRepository.findByOrganizerId(event.getOrganizerEvent().getOrganizerId());
         EventEntity eventEntity = EventMapper.mapEventToEventEntity(event);
         eventEntity.setOrgnzId(GenericMapper.map(organizer, OrganizerEntity.class));
@@ -33,14 +34,14 @@ public class EventRepository {
         return EventMapper.mapEventEntityToEventModel(eventRepositoryJpa.save(eventEntity));
     }
 
-    public List<Event> findAllByOrgnz(String organizerId) {
+    public List<Event> findAllByOrgnz(String organizerId) throws NoBugsException {
 
         Organizer organizer = organizerRepository.findByOrganizerId(organizerId);
 
         return EventMapper.mapEventEntityListToEventList(eventRepositoryJpa.findAllByOrgnzId(GenericMapper.map(organizer, OrganizerEntity.class)));
     }
 
-    public Event findById(Long id) {
+    public Event findById(Long id) throws NoBugsException {
         if (id == null)
             throw new NoBugsException("Id must not be null", HttpStatus.BAD_REQUEST);
 
@@ -61,7 +62,7 @@ public class EventRepository {
         return event;
     }
 
-    public Event findByIdAndSubject(Long id, String subject) {
+    public Event findByIdAndSubject(Long id, String subject) throws NoBugsException {
         if (id == null || subject == null)
             throw new NoBugsException("Id and subject must not be null", HttpStatus.BAD_REQUEST);
 
@@ -82,7 +83,7 @@ public class EventRepository {
         return event;
     }
 
-    public List<Event> filterEvents(String search) {
+    public List<Event> filterEvents(String search) throws NoBugsException {
 
         List<EventEntity> events;
 

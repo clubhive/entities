@@ -1,10 +1,10 @@
-package org.clubhive.DTO.simple;
+package org.clubhive.dto.simple;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.clubhive.DTO.UserResponseDTO;
+import org.clubhive.dto.UserResponseDTO;
 
 @AllArgsConstructor
 @NoArgsConstructor

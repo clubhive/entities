@@ -1,7 +1,7 @@
 package org.clubhive.repositories.implement;
 
-import exceptions.NoBugsException;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.clubhive.entities.EventEntity;
 import org.clubhive.entities.PromoterEntity;
 import org.clubhive.model.Event;
@@ -12,8 +12,9 @@ import org.clubhive.utils.PromoterMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import com.co.nobugs.nobugsexception.NoBugsException;
+
+import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class PromoterRepository {
         return PromoterMapper.entityListToModelList(promoterRepositoryJpa.findAll());
     }
 
-    public Promoter save(Promoter promoter) {
+    public Promoter save(Promoter promoter) throws NoBugsException {
         EventEntity eventEntity = null;
         if (promoter.getEventId() != null) {
             try {
@@ -61,7 +62,7 @@ public class PromoterRepository {
         return PromoterMapper.entityToModel(promoterRepositoryJpa.save(promoterEntity));
     }
 
-    public Promoter findById(Long id) {
+    public Promoter findById(Long id) throws NoBugsException {
         if (id == null)
             throw new IllegalArgumentException("Id must not be null");
 
@@ -79,7 +80,7 @@ public class PromoterRepository {
         return PromoterMapper.entityToModel(promoterRepositoryJpa.findById(id).orElseThrow());
     }
 
-    public Promoter update(Promoter promoter) {
+    public Promoter update(Promoter promoter) throws NoBugsException {
         try {
             if (!promoterRepositoryJpa.existsById(promoter.getId())) {
                 throw new NoBugsException("Promoter not found", HttpStatus.NOT_FOUND);
@@ -107,7 +108,7 @@ public class PromoterRepository {
         return PromoterMapper.entityToModel(promoterRepositoryJpa.save(promoterEntity));
     }
 
-    public void delete(Long id) {
+    public void delete(Long id) throws NoBugsException {
         try {
             if (!promoterRepositoryJpa.existsById(id)) {
                 throw new NoBugsException("Promoter not found", HttpStatus.NOT_FOUND);

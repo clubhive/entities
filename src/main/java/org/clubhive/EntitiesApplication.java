@@ -12,6 +12,8 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.List;
 
+import com.co.nobugs.nobugsexception.NoBugsException;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 @Slf4j
@@ -19,14 +21,14 @@ public class EntitiesApplication {
 
     private final EventRepository eventRepository;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoBugsException {
 
         ApplicationContext applicationContext = SpringApplication.run(EntitiesApplication.class, args);
         applicationContext.getBean(EntitiesApplication.class).test();
 
     }
 
-    public void test() {
+    public void test() throws NoBugsException {
         List<Event> events = eventRepository.filterEvents("Villavicencio");
         log.info("Events in Villavicencio: {}", events);
     }

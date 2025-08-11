@@ -1,18 +1,18 @@
-package org.clubhive.DTO;
+package org.clubhive.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDTO extends UserAuthentication{
+@Getter
+@Setter
+public class TicketSaleDTO {
 
-    private String dni;
     private String name;
-    private String phone;
-
+    private double price;
+    private int quantity;
+    private String desc;
 }

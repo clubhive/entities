@@ -1,10 +1,10 @@
-package org.clubhive.DTO.auth;
+package org.clubhive.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.clubhive.DTO.UserResponseDTO;
+import org.clubhive.dto.UserResponseDTO;
 
 @Getter
 @Setter

@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.4</version>
+        <version>3.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>org.clubhive</groupId>
-    <artifactId>Entities</artifactId>
+    <artifactId>entites</artifactId>
     <version>1.0.1</version>
 
     <properties>
@@ -26,22 +26,15 @@
             <artifactId>nimbus-jose-jwt</artifactId>
             <version>9.38-rc3</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.nobugs0</groupId>
+            <artifactId>nobugs-exception</artifactId>
+            <version>3.0.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.StivenVA</groupId>
-            <artifactId>exceptions</artifactId>
-            <version>main-f14424fd57-1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.StivenVA</groupId>
-            <artifactId>FindUser</artifactId>
-            <version>main-5b0f0384d8-1</version>
         </dependency>
 
         <dependency>
@@ -77,6 +70,5 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
-
 
 </project>

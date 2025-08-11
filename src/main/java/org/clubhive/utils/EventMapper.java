@@ -1,10 +1,10 @@
 package org.clubhive.utils;
 
 
-import org.clubhive.DTO.EventDTO;
-import org.clubhive.DTO.OrganizerEventDTO;
-import org.clubhive.DTO.PromoterDTO;
-import org.clubhive.DTO.TicketDTO;
+import org.clubhive.dto.EventDTO;
+import org.clubhive.dto.OrganizerEventDTO;
+import org.clubhive.dto.PromoterDTO;
+import org.clubhive.dto.TicketDTO;
 import org.clubhive.entities.CityEntity;
 import org.clubhive.entities.EventEntity;
 import org.clubhive.model.Event;
@@ -12,8 +12,6 @@ import org.clubhive.model.OrganizerEvent;
 import org.clubhive.model.Promoter;
 import org.clubhive.model.Ticket;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class EventMapper {
